@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { ContactForm } from "../../components/contactForm/ContactForm";
 import { TileList } from "../../components/tileList/TileList";
 
-export const ContactsPage = ({ contacts, addContacts }) => {
+export const ContactsPage = ({ contacts, addContact }) => {
   /*
   Define state variables for 
   contact info and duplicate check
@@ -20,7 +20,13 @@ export const ContactsPage = ({ contacts, addContacts }) => {
     if the contact name is not a duplicate
     */
    if (!duplicate){
-    addContacts(name, phone, email);
+    addContact(name, phone, email);
+    setName("");
+    setPhone("");
+    setEmail("");
+   } else {
+    window.alert("The user already exists. Please type another user.");
+    setName("");
     setName("");
     setPhone("");
     setEmail("");
@@ -47,7 +53,6 @@ export const ContactsPage = ({ contacts, addContacts }) => {
           email={email}
           setEmail={setEmail}
           handleSubmit={handleSubmit}
-          duplicate={duplicate}
         /> 
       </section>
       <hr />
